@@ -1,0 +1,5 @@
+parameters:
+    level: 8
+    paths:
+        - packages/eusig/src
+        - packages/eusig-bundle/src

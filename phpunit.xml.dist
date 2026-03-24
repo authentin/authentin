@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         failOnRisky="true"
+         failOnWarning="true"
+>
+    <testsuites>
+        <testsuite name="eusig">
+            <directory>packages/eusig/tests</directory>
+        </testsuite>
+        <testsuite name="eusig-bundle">
+            <directory>packages/eusig-bundle/tests</directory>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>integration</group>
+        </exclude>
+    </groups>
+    <source>
+        <include>
+            <directory>packages/eusig/src</directory>
+            <directory>packages/eusig-bundle/src</directory>
+        </include>
+    </source>
+</phpunit>

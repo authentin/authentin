@@ -1,0 +1,42 @@
+{
+    "name": "authentin/eusig-monorepo",
+    "description": "Monorepo for authentin/eusig — eIDAS-compliant electronic signatures for PHP",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.1",
+        "psr/http-message": "^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.50",
+        "nyholm/psr7": "^1.8",
+        "php-http/mock-client": "^1.6",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.0",
+        "symfony/config": "^6.4 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-client": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^6.4 || ^7.0 || ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Authentin\\Eusig\\": "packages/eusig/src/",
+            "Authentin\\EusigBundle\\": "packages/eusig-bundle/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Authentin\\Eusig\\Tests\\": "packages/eusig/tests/",
+            "Authentin\\EusigBundle\\Tests\\": "packages/eusig-bundle/tests/"
+        }
+    },
+    "replace": {
+        "authentin/eusig": "self.version",
+        "authentin/eusig-bundle": "self.version"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

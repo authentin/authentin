@@ -1,0 +1,11 @@
+/vendor/
+/packages/*/vendor/
+composer.lock
+.php-cs-fixer.cache
+.phpunit.result.cache
+phpunit.xml
+phpstan.neon.local
+.idea/
+.DS_Store
+*.env
+*.env.local
