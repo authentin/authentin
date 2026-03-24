@@ -1,0 +1,12 @@
+services:
+    dss:
+        build:
+            context: https://github.com/esig/dss-demonstrations.git#master
+        ports:
+            - '8080:8080'
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:8080/services/rest/server-signing/keys']
+            interval: 10s
+            timeout: 5s
+            retries: 30
+            start_period: 60s
