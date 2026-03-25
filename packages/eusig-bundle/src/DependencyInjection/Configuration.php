@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Authentin\EusigBundle\DependencyInjection;
 
+use Authentin\Eusig\Model\DigestAlgorithm;
+use Authentin\Eusig\Model\SignatureLevel;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -33,20 +35,26 @@ final class Configuration implements ConfigurationInterface
                             ->defaultValue('pkcs12')
                         ->end()
                         ->scalarNode('path')
+                            ->isRequired()
+                            ->cannotBeEmpty()
                             ->info('Path to the PKCS#12 (.p12) keystore file')
                         ->end()
                         ->scalarNode('password')
-                            ->info('Password for the PKCS#12 keystore')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                            ->info('Password for the PKCS#12 keystore (use %%env()%% to avoid plain text)')
                         ->end()
                     ->end()
                 ->end()
                 ->arrayNode('defaults')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('signature_level')
+                        ->enumNode('signature_level')
+                            ->values(\array_map(static fn(SignatureLevel $l): string => $l->value, SignatureLevel::cases()))
                             ->defaultValue('PAdES_BASELINE_B')
                         ->end()
-                        ->scalarNode('digest_algorithm')
+                        ->enumNode('digest_algorithm')
+                            ->values(\array_map(static fn(DigestAlgorithm $a): string => $a->value, DigestAlgorithm::cases()))
                             ->defaultValue('SHA256')
                         ->end()
                     ->end()
