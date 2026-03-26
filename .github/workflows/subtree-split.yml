@@ -19,6 +19,9 @@ jobs:
           - name: eusig-bundle
             directory: packages/eusig-bundle
             repository: eusig-bundle
+          - name: dss
+            directory: packages/dss
+            repository: dss
 
     steps:
       - uses: actions/checkout@v4

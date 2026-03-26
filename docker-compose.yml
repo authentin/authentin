@@ -1,7 +1,6 @@
 services:
     dss:
-        build:
-            context: https://github.com/esig/dss-demonstrations.git#master
+        image: ghcr.io/authentin/dss:latest
         ports:
             - '8080:8080'
         healthcheck:

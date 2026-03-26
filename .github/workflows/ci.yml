@@ -15,6 +15,18 @@ jobs:
       matrix:
         php: ['8.2', '8.3', '8.4', '8.5']
 
+    services:
+      dss:
+        image: ghcr.io/authentin/dss:latest
+        ports:
+          - 8080:8080
+        options: >-
+          --health-cmd "wget -q --spider http://localhost:8080/services/rest/server-signing/keys || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 30
+          --health-start-period 60s
+
     steps:
       - uses: actions/checkout@v4
 
