@@ -37,9 +37,6 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: ${{ matrix.package.repository }}
-          permissions: >-
-            contents:write,
-            workflows:write
 
       - name: Install splitsh-lite
         run: |
