@@ -17,11 +17,11 @@ jobs:
 
     services:
       dss:
-        image: ghcr.io/authentin/dss:latest
+        image: ghcr.io/authentin/dss:6.4
         ports:
           - 8080:8080
         options: >-
-          --health-cmd "wget -q --spider http://localhost:8080/services/rest/server-signing/keys || exit 1"
+          --health-cmd "wget -qO /dev/null http://localhost:8080/services/rest/validation || exit 1"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 30
@@ -40,6 +40,8 @@ jobs:
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit
+        env:
+          DSS_BASE_URL: http://localhost:8080/services/rest
 
   static-analysis:
     name: Static Analysis
