@@ -21,7 +21,7 @@ jobs:
         ports:
           - 8080:8080
         options: >-
-          --health-cmd "wget -qO /dev/null http://localhost:8080/services/rest/validation || exit 1"
+          --health-cmd "bash -c 'exec 3<>/dev/tcp/localhost/8080 && echo -e \"GET /services/ HTTP/1.0\r\nHost: localhost\r\n\r\n\" >&3 && grep -q \"200\" <&3'"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 30
