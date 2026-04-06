@@ -51,5 +51,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           SHA=$(splitsh-lite --prefix=${{ matrix.package.directory }})
-          git push -f "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/authentin/${{ matrix.package.repository }}.git" "$SHA:refs/heads/main"
-          git push -f "https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/authentin/${{ matrix.package.repository }}.git" "${{ github.ref_name }}:refs/tags/${{ github.ref_name }}"
+          REMOTE="https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/authentin/${{ matrix.package.repository }}.git"
+          git push -f "$REMOTE" "$SHA:refs/heads/main"
+          git tag -f "${{ github.ref_name }}" "$SHA"
+          git push -f "$REMOTE" "refs/tags/${{ github.ref_name }}"
