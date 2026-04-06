@@ -22,20 +22,20 @@ Read-only split repos: [authentin/eusig](https://github.com/authentin/eusig) and
 git clone https://github.com/authentin/authentin.git
 cd authentin
 docker compose up -d --wait
-symfony composer install
+composer install
 ```
 
 ### Running tests
 
 ```bash
 # All tests (unit + integration, requires DSS running)
-symfony composer exec phpunit
+vendor/bin/phpunit
 
 # Static analysis
-symfony composer exec phpstan -- analyse
+vendor/bin/phpstan analyse
 
 # Code style
-symfony composer exec php-cs-fixer -- fix --dry-run --diff
+vendor/bin/php-cs-fixer fix --dry-run --diff
 ```
 
 ### Running examples
@@ -65,9 +65,9 @@ examples/           Standalone usage examples (monorepo only, not shipped with p
 1. Fork this monorepo (`authentin/authentin`)
 2. Create a feature branch
 3. Make your changes — all development happens here
-4. Ensure tests pass: `symfony composer exec phpunit`
-5. Ensure code style: `symfony composer exec php-cs-fixer -- fix`
-6. Ensure static analysis: `symfony composer exec phpstan -- analyse`
+4. Ensure tests pass: `vendor/bin/phpunit`
+5. Ensure code style: `vendor/bin/php-cs-fixer fix`
+6. Ensure static analysis: `vendor/bin/phpstan analyse`
 7. Submit a PR against `main`
 
 Changes are automatically split to the read-only package repositories on merge.
